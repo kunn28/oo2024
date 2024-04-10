@@ -1,0 +1,52 @@
+f1.ts
+
+                                                // Defineerime funktsiooni "kasPositiivne", mis võtab arvu ja tagastab, kas see on positiivne (true) või mitte (false).
+export function kasPositiivne(arv: number): boolean {
+   return arv > 0;
+}
+
+                                                // Defineerime funktsiooni "keskmineSuhkruMass"
+export function keskmineSuhkruMass(suhkruMassid: number[], veekogused: number[]): number {
+   let suhkruSumma = 0;
+   let veeSumma = 0;
+   
+                                                 // Läbime mõlemad massiivid
+   for (let i = 0; i < suhkruMassid.length; i++) {
+                                                // Kontrollime, kas veekogus on positiivne arv
+      if (!kasPositiivne(veekogused[i])) {
+         throw new Error("Veekogus peab olema positiivne");
+      }
+                                                  // Liidame suhkru ja veekogused kokku vastavalt indeksile.
+      suhkruSumma += suhkruMassid[i];
+      veeSumma += veekogused[i];
+   }
+   
+                                                   // Tagastame keskmise suhkru massi
+   return suhkruSumma / veeSumma;
+}
+
+
+
+tund7.1.ts
+
+                                                    // Impordime
+import { kasPositiivne, keskmineSuhkruMass } from "../f1";
+
+                                                    // Testime "kasPositiivne" funktsiooni.
+test('positiivsus', () => {
+   // Ootame, et positiivse arvu puhul tagastatakse true.
+   expect(kasPositiivne(3)).toBe(true);
+   // Ootame, et 0 korral tagastatakse false.
+   expect(kasPositiivne(0)).toBe(false);
+   // Ootame, et negatiivse arvu puhul tagastatakse false.
+   expect(kasPositiivne(-5)).toBe(false);
+});
+
+                                                    // Testime "keskmineSuhkruMass" funktsiooni.
+test('keskmineSuhkruMass', () => {
+   // Loome suhkru masside ja veekoguste massiivid testi jaoks.
+   const suhkruMassid = [20, 30, 80];
+   const veekogused = [200, 300, 400];
+                                                     // Ootame, et keskmine suhkru mass oleks lähedane 0.1-ga, koefitsiendiga 0.2.
+   expect(keskmineSuhkruMass(suhkruMassid, veekogused)).toBeCloseTo(0.1, 0.2);
+});
