@@ -8,6 +8,6 @@ test('positiivsus', () => {
 
 test('keskmineSuhkruMass', () => {
    const suhkruMassid = [20, 30, 80];
-   const veekogused = [200, 300, 400];
-   expect(keskmineSuhkruMass(suhkruMassid, veekogused)).toBeCloseTo(0.1, 0.2);
+   const veekogused = [200, 300, 800];
+   expect(keskmineSuhkruMass(suhkruMassid, veekogused)).toBeCloseTo(0.1);
 });
